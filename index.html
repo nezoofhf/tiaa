@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Tia!</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe3ec 100%);
+            color: #4a4a4a;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header Styles */
+        h1 {
+            font-size: 3.5rem;
+            color: #ff4d79;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            animation: heartBeat 2s infinite;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #ff7597;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* Profile Photo Container */
+        .photo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(255, 77, 121, 0.2);
+            border: 8px solid #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.02);
+        }
+
+        /* Letter Box */
+        .letter-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 1.15rem;
+        }
+
+        .letter-card p {
+            margin-bottom: 15px;
+        }
+
+        .letter-card p:last-child {
+            margin-bottom: 0;
+            font-weight: bold;
+            color: #ff4d79;
+        }
+
+        /* Balloon Elements */
+        .balloon {
+            position: fixed;
+            bottom: -100px;
+            width: 60px;
+            height: 75px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            cursor: pointer;
+            z-index: 999;
+            animation: floatUp 8s linear infinite;
+            transition: transform 0.1s ease;
+        }
+
+        /* Balloon String */
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 28px;
+            width: 2px;
+            height: 15px;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        /* Balloon Knot */
+        .balloon::before {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 26px;
+            width: 8px;
+            height: 6px;
+            background-color: inherit;
+            border-radius: 3px;
+        }
+
+        /* Animations */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) translateX(50px) rotate(15deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Particle effect for popped balloons */
+        .pop-particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            animation: explode 0.5s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% { transform: translate(0, 0); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Happy Birthday, Tia!</h1>
+            <p class="subtitle">Wishing the Sweetest Little Princess a Magical Day</p>
+        </header>
+
+        <div class="photo-wrapper">
+            <img src="Tia.jpeg" alt="Birthday Girl Tia" class="profile-photo">
+        </div>
+
+        <main>
+            <div class="letter-card">
+                <p>To my wonderful little cousin, Tia,</p>
+                <p>Watching you grow, smile, and bring so much bright energy into our family is an absolute joy. You deserve a day filled with your favorite treats, endless playtime, and all the happiness in the world.</p>
+                <p>Never lose that beautiful smile! Happy Birthday!</p>
+                <p>With love, from your cousin ✨</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Array of pretty pastel colors for the balloons
+        const colors = ['#ff7597', '#ff4d79', '#ffb3c6', '#ffccd5', '#ff85a2', '#f72585'];
+
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            
+            // Randomize balloon properties
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const randomLeft = Math.random() * 90; // Keep slightly away from strict edge
+            const randomSize = 50 + Math.random() * 30; // Scale size between 50px and 80px
+            const randomDuration = 6 + Math.random() * 6; // Variable speeds
+
+            balloon.style.backgroundColor = randomColor;
+            balloon.style.left = `${randomLeft}vw`;
+            balloon.style.width = `${randomSize}px`;
+            balloon.style.height = `${randomSize * 1.25}px`;
+            balloon.style.animationDuration = `${randomDuration}s`;
+            
+            // Add click/tap event to pop the balloon
+            balloon.addEventListener('click', function(e) {
+                popBalloon(e.clientX, e.clientY, randomColor);
+                balloon.remove();
+            });
+
+            document.body.appendChild(balloon);
+
+            // Clean up balloon element once it floats off screen
+            setTimeout(() => {
+                if(balloon.parentNode) {
+                    balloon.remove();
+                }
+            }, randomDuration * 1000);
+        }
+
+        function popBalloon(x, y, color) {
+            // Create a small explosion of particles when popped
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('pop-particle');
+                particle.style.backgroundColor = color;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+
+                // Set random explosion trajectory via CSS variables
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 20 + Math.random() * 60;
+                const pX = Math.cos(angle) * velocity;
+                const pY = Math.sin(angle) * velocity;
+                
+                particle.style.setProperty('--x', `${pX}px`);
+                particle.style.setProperty('--y', `${pY}px`);
+
+                document.body.appendChild(particle);
+
+                // Remove particle after animation finish
+                setTimeout(() => particle.remove(), 500);
+            }
+        }
+
+        // Generate balloons continuously
+        setInterval(createBalloon, 800);
+
+        // Start with a few initial balloons on load
+        window.addEventListener('DOMContentLoaded', () => {
+            for(let i = 0; i < 5; i++) {
+                setTimeout(createBalloon, i * 400);
+            }
+        });
+    </script>
+</body>
+</html>
